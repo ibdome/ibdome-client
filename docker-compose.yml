@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  ibdome_web:
+    image: ibdome/client
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 10008:3838
+    cpus: '4'
+    cpuset: '0'
+    volumes:
+      - "../db:/db:ro,z"
+      - "../db/tpm_matrix_rnaseq_2025-04-24.csv.gz:/db/tpm_matrix_rnaseq.csv.gz:ro,z"
+      - "../downloads:/srv/shiny-server/ibdome/downloads:ro,z"
+      - "../logs/:/var/log/shiny-server:z"
+      - "./shiny/shiny-server.conf:/etc/shiny-server/shiny-server.conf:ro,z"
+      - "./config.yml:/srv/shiny-server/ibdome/config_external.yml:ro,z"
+    environment:
+      - OMP_NUM_THREADS=4
+      - OPENBLAS_NUM_THREADS=4
+      - MKL_NUM_THREADS=4
+      - R_MAX_NUM_THREADS=4
+      - LD_LIBRARY_PATH=/usr/local/lib/R/lib:$LD_LIBRARY_PATH
+    deploy:
+      resources:
+        limits:
+          cpuset: '0'
+          cpus: '4.0'
+          memory: '32G'
