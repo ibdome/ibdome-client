@@ -1,6 +1,10 @@
 # Changelog
 
 <!-- TODO: add previous versions -->
+## v1.0.2
+
+- Bug fixes in table export
+
 ## v1.0.1
 
 - Updated database version. 
