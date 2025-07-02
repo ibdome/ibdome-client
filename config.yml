@@ -1,7 +1,7 @@
 # This config file is part of the application and the application version.
 # If you need to adjust values (e.g. the DB path) for your local installation,
 # use the `config_external.yml`.
-version: "v1.0.1"
+version: "v1.0.2"
 db_path: "/db/"
 db_version: "ibdome_2025-04-16.sqlite"
 tpm_version: "tpm_matrix_rnaseq.csv.gz"
