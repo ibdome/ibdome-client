@@ -13,7 +13,8 @@ box::use(
   R.devices[suppressGraphics],
   tibble[rownames_to_column],
   .. / load_data[tpm_matrix],
-  rlang[ensym]
+  rlang[ensym],
+  readr[write_csv]
   )
 
 
@@ -423,7 +424,7 @@ server <- function(input, output, session) {
     },
     content = function(file) {
       data <- correlation_data()
-      write.csv(data, file, row.names = FALSE)
+      write_csv(data, file)
     }
   )
   output$download_meta <- downloadHandler(
