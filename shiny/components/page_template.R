@@ -50,6 +50,12 @@ menu_template <- function(page_id) {
       item_feature = .is_active("data_download", page_id),
       style = "color: #000000;"
     ),
+    menu_item(
+      href= "https://github.com/ibdome", icon("github"), "Code",
+      item_feature = "",
+      target = "_blank", # open in new tab
+      style = "color: #000000;"
+    ),
     # menu_item(
     #   href = route_link("documentation"), NULL, "Documentation",
     #   item_feature = .is_active("documentation", page_id),
