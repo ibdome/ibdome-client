@@ -2,7 +2,7 @@ box::use(
   shiny[...],
   shiny.semantic[menu_item, icon],
   shiny.router[route_link],
-  .. / config[VERSION]
+  ../config[VERSION]
 )
 
 .is_active <- function(menu_id, page_id) {
@@ -50,24 +50,29 @@ menu_template <- function(page_id) {
       item_feature = .is_active("data_download", page_id),
       style = "color: #000000;"
     ),
+    menu_item(
+      href= "https://github.com/ibdome", icon("github"), "Code",
+      item_feature = "",
+      target = "_blank", # open in new tab
+      style = "color: #000000;"
+    ),
     # menu_item(
     #   href = route_link("documentation"), NULL, "Documentation",
     #   item_feature = .is_active("documentation", page_id),
     #   style = "color: #000000;"
     # ),
     menu_item(
-      href = route_link("changelog"), NULL, "Changelog",
+      href = route_link("changelog"), icon("cog"), "Changelog",
       item_feature = .is_active("changelog", page_id),
       style = "color: #000000;"
     ),
     menu_item(
-      href = route_link("cite"), NULL, "Citation",
+      href = route_link("cite"), icon("book"), "Citation",
       item_feature = .is_active("Cite", page_id),
       style = "color: #000000;"
     )
   )
 }
-
 
 # Main page layout function using fluidPage and Flexbox for sidebar
 #' @export
@@ -106,7 +111,6 @@ page_template <- function(page_id, ...) {
               style = "display: flex; justify-content: center; align-items: center; gap: 5vw; flex-wrap: wrap;",
               "© 2025 TRR241. All rights reserved."
               ),
-          
         )
       )
     )

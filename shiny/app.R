@@ -2,6 +2,7 @@ box::use(
   shiny[...],
   shiny.semantic[...],
   shiny.router[route, router_ui, router_server],
+  waiter[use_waiter, waiter_hide, waiter_show_on_load, spin_fading_circles],
   . / modules / home,
   . / modules / overview,
   . / modules / gene_expression,
@@ -37,6 +38,11 @@ router_ui_component <- router_ui(
 
 # Main UI
 ui <- semanticPage(
+  use_waiter(),  # enable waiter
+  waiter_show_on_load(  # Spinner shown until app loads
+    html = tagList(
+      spin_fading_circles(),
+      h4("Loading IBDome... please wait"))),
   title = paste("IBDome", VERSION),
   router_ui_component
 )
@@ -53,6 +59,7 @@ server <- function(input, output, session) {
   moduleServer("accessibility", accessibility$server)
   moduleServer("privacy", privacy$server)
   moduleServer("cite", cite$server)
+  waiter_hide()
 }
 
 # Run the app

@@ -66,8 +66,9 @@ server <- function(input, output, session) {
     list(label = "Transcriptomics Data (raw counts)", desc = "Raw transcriptomic counts data.", link = paste0("IBDome_transcriptomics_rawcounts_", VERSION, ".csv.zip")),
     list(label = "Olink Proteomics Metadata", desc = "Metadata associated with the Olink proteomics dataset.", id = "download_proteomics_meta"),
     list(label = "Transcriptomics Metadata", desc = "Metadata for the transcriptomic dataset.", id = "download_transcriptomics_meta"),
+    list(label = "H&E images", desc = "Link to the BioImage Archive repository of IBDome", link = "https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BIAD1753"),
     list(label = "IBDome Logo", desc = "Zip folder with the logo for the IBDome project in different formats.", link = "IBDome_logo.zip"),
-    list(label = "IBDome Database", desc = "Zipped IBDome SQLite database.", link = "ibdome_v1.0.1.zip")
+    list(label = "IBDome Database", desc = "Zipped IBDome SQLite database.", link = paste0("ibdome_", VERSION, ".zip"))
   )
   
   output$download_table <- renderTable({
@@ -77,7 +78,11 @@ server <- function(input, output, session) {
       Download = sapply(downloads, function(x) {
         if (!is.null(x$id)) {
           as.character(shiny::downloadButton(ns(x$id), "Download"))
+        } else if (grepl("^https?://", x$link)) {
+          # External link
+          sprintf('<a href="%s" target="_blank">Download</a>', x$link)
         } else {
+          # Local file
           sprintf('<a href="%s" target="_blank" download>Download</a>', file.path("static", x$link))
         }
       }),
