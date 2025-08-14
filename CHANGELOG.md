@@ -3,6 +3,7 @@
 <!-- TODO: add previous versions -->
 ## v1.0.3
 
+- Update rocker/shiny to v4.5.1
 - Add waiter
 - Add links to external resources
 - Fix data downloads
