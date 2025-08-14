@@ -48,7 +48,6 @@ ui <- semanticPage(
 )
 
 server <- function(input, output, session) {
-
   router_server()
   moduleServer("index", home$server)
   moduleServer("overview", overview$server)

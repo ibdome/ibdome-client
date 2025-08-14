@@ -68,7 +68,7 @@ server <- function(input, output, session) {
     list(label = "Transcriptomics Metadata", desc = "Metadata for the transcriptomic dataset.", id = "download_transcriptomics_meta"),
     list(label = "H&E images", desc = "Link to the BioImage Archive repository of IBDome", link = "https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BIAD1753"),
     list(label = "IBDome Logo", desc = "Zip folder with the logo for the IBDome project in different formats.", link = "IBDome_logo.zip"),
-    list(label = "IBDome Database", desc = "Zipped IBDome SQLite database.", link = "ibdome_v1.0.3.zip")
+    list(label = "IBDome Database", desc = "Zipped IBDome SQLite database.", link = paste0("ibdome_", VERSION, ".zip"))
   )
   
   output$download_table <- renderTable({
